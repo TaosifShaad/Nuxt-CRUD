@@ -6,6 +6,7 @@ export const useBookStore = defineStore("book-store", {
     state: () => ({
         // List of all books
         books: [] as IBook[],
+        error: false
     }),
     actions: {
         // Get all books from DB
@@ -25,11 +26,15 @@ export const useBookStore = defineStore("book-store", {
                 body: book,
             })
                 .catch((e) => {
+                    this.error = true;
                     useToast().error(e.data.message);
                 })
                 .then(async () => {
-                    await this.getAll();
-                    useToast().success("Book created");
+                    if (!this.error) {
+                        await this.getAll();
+                        useToast().success("Book created");
+                    }
+                    this.error = false;
                 });
         },
         // Update a book
@@ -39,11 +44,15 @@ export const useBookStore = defineStore("book-store", {
                 body: book,
             })
                 .catch((e) => {
+                    this.error = true;
                     useToast().error(e.data.message);
                 })
                 .then(async () => {
-                    await this.getAll();
-                    useToast().success("Book updated");
+                    if (!this.error) {
+                        await this.getAll();
+                        useToast().success("Book updated");
+                    }
+                    this.error = false;
                 });
         },
         // delete a book

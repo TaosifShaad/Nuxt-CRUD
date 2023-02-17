@@ -47,8 +47,11 @@ export const useAuthorStore = defineStore("author-store", {
                     useToast().error(e.data.message);
                 })
                 .then(async () => {
-                    await this.getAll();
-                    useToast().success("Author updated");
+                    if (!this.error) {
+                        await this.getAll();
+                        useToast().success("Author updated");
+                    }
+                    this.error = false;
                 });
         },
         // delete an author
