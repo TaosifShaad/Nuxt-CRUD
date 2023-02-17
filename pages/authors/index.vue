@@ -46,11 +46,11 @@
             <!-- Action items for table -->
             <template #item-actions="author">
               <div class="flex space-x-4 text-gray-500">
-                <button @click="authorModal.openModal(author)">
-                  <Icon size="18" name="fluent:pen-24-regular" />
+                <button @click="authorModal.openModal(author)" class="hover:text-green-500 transition-colors">
+                  <Icon v-tooltip="'Edit'" size="18" name="fluent:pen-24-regular" />
                 </button>
-                <button @click="removeAuthor(author)">
-                  <Icon size="18" name="fluent:delete-24-regular" />
+                <button @click="removeAuthor(author)" class="hover:text-red-500 transition-colors">
+                  <Icon v-tooltip="'Delete'" size="18" name="fluent:delete-24-regular" />
                 </button>
               </div>
             </template>

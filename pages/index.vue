@@ -52,11 +52,11 @@
             <!-- Action items for table -->
             <template #item-actions="book">
               <div class="flex space-x-4 text-gray-500">
-                <button @click="bookModal.openModal(book)">
-                  <Icon size="18" name="fluent:pen-24-regular" />
+                <button @click="bookModal.openModal(book)" class="hover:text-green-500 transition-colors">
+                  <Icon v-tooltip="'Edit'" size="18" name="fluent:pen-24-regular" />
                 </button>
-                <button @click="removeBook(book)">
-                  <Icon size="18" name="fluent:delete-24-regular" />
+                <button @click="removeBook(book)" class="hover:text-red-500 transition-colors">
+                  <Icon v-tooltip="'Delete'" size="18" name="fluent:delete-24-regular" />
                 </button>
               </div>
             </template>
@@ -74,7 +74,6 @@ import { Header } from "vue3-easy-data-table";
 import dayjs from "dayjs";
 // Book store from pinia
 const bookStore = useBookStore();
-console.log(bookStore.books[0])
 // Get books with async data
 await useAsyncData(() => bookStore.getAll(), {
   initialCache: false,
