@@ -69,7 +69,8 @@
   </TransitionRoot>
 </template>
 
-<script setup>
+<script setup lang="ts">
+
 import {
   Dialog,
   DialogPanel,

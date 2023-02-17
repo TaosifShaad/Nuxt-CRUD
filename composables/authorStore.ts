@@ -6,6 +6,7 @@ export const useAuthorStore = defineStore("author-store", {
     state: () => ({
         authors: [] as IAuthor[],
     }),
+
     actions: {
         // Get all authors from DB
         async getAll() {

@@ -30,7 +30,7 @@
       </div>
 
       <div class="relative mt-5 border border-gray-100 rounded-lg">
-        <ClientOnly>
+        <ClientOnly fallback-tag="p" fallback='loading Authors...' class="text-center text-orange-400 text-lg py-3">
           <EasyDataTable
               empty-message="No Author Found"
               :search-value="search"
@@ -65,6 +65,7 @@
 
 <script setup lang="ts">
 import { Header } from "vue3-easy-data-table";
+// import { reactive } from 'vue';
 
 // Author store
 const authorStore = useAuthorStore();
@@ -78,6 +79,7 @@ useAsyncData(async () => await authorStore.getAll(), {
 const authorModal = ref();
 //Search for author in table
 const search = ref("");
+
 
 // Method used to remove an author
 const removeAuthor = async (author) => {
