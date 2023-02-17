@@ -63,6 +63,7 @@ useAsyncData(() => authorStore.getAll(), { initialCache: false });
 const query = ref("");
 // Method used to display the text inside the input
 const getDisplay = (authors) => {
+  // console.log(authors)
   // If empty
   if (!authors.length) return;
   // get first author name
@@ -76,10 +77,12 @@ const getDisplay = (authors) => {
 };
 // Simple search function to find the authors
 const filteredAuthors = computed(() =>
-    query.value === ""
-        ? authorStore.authors
-        : authorStore.authors.filter((a) => {
-          return a.name.toLowerCase().includes(query.value.toLowerCase());
-        })
+  // console.log(query.value)
+  query.value === ""
+      ? authorStore.authors
+      : authorStore.authors.filter((a) => {
+        return a.name.toLowerCase().includes(query.value.toLowerCase());
+    // return query.value
+      })
 );
 </script>

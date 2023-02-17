@@ -46,6 +46,9 @@
             <template #item-published="{ published }">
               <span>{{ dayjs(published).format("MMM DD, YYYY") }}</span>
             </template>
+            <template #item-authors="{ authors }">
+              <span v-for="(author, index) in authors" :key="author.id">{{ (authors.length === 1 || index === authors.length - 1) ? author.name : author.name + ', ' }}</span>
+            </template>
             <!-- Action items for table -->
             <template #item-actions="book">
               <div class="flex space-x-4 text-gray-500">
@@ -71,6 +74,7 @@ import { Header } from "vue3-easy-data-table";
 import dayjs from "dayjs";
 // Book store from pinia
 const bookStore = useBookStore();
+console.log(bookStore.books[0])
 // Get books with async data
 await useAsyncData(() => bookStore.getAll(), {
   initialCache: false,
@@ -79,12 +83,14 @@ await useAsyncData(() => bookStore.getAll(), {
 const bookModal = ref();
 //Search for record in table
 const search = ref("");
+const a = ref("a");
 // headers for the table
 const headers: Header[] = [
   { text: "Title", value: "title", sortable: true, width: 200 },
   { text: "Published", value: "published", width: 150 },
   { text: "ISBN", value: "isbn", sortable: true },
   { text: "Page Count", value: "pageCount", sortable: true, width: 200 },
+  { text: "Author", value: "authors", width: 200},
   { text: "Actions", value: "actions", width: 100 },
 ];
 // Method used to remove a book

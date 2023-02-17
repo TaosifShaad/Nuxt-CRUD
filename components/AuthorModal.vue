@@ -107,14 +107,17 @@ const openModal = (item) => {
   open.value = true;
 };
 const closeModal = () => {
-  author.value = {};
   open.value = false;
+  setTimeout(() => {
+    author.value = {}
+  }, 700);
 };
 // Expose these methods to parent components
 defineExpose({
   openModal,
   closeModal,
 });
+
 </script>
 
 <style></style>

@@ -65,7 +65,6 @@
 
 <script setup lang="ts">
 import { Header } from "vue3-easy-data-table";
-// import { reactive } from 'vue';
 
 // Author store
 const authorStore = useAuthorStore();
@@ -79,7 +78,6 @@ useAsyncData(async () => await authorStore.getAll(), {
 const authorModal = ref();
 //Search for author in table
 const search = ref("");
-
 
 // Method used to remove an author
 const removeAuthor = async (author) => {

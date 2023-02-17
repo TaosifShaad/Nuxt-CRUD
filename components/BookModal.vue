@@ -128,14 +128,16 @@ const openModal = (item) => {
     book.value = JSON.parse(
         JSON.stringify({ ...item, published: item.published.substring(0, 10) })
     );
-    authors.value = item.authors.map((a) => a._id);
+    // authors.value = item.authors.map((a) => a._id);
   }
   open.value = true;
 };
 const closeModal = () => {
-  book.value = {};
-  authors.value = [];
   open.value = false;
+  setTimeout(() => {
+    book.value = {};
+    authors.value = [];
+  }, 700);
 };
 // Expose these methods to parent components
 defineExpose({
