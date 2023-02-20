@@ -10,8 +10,8 @@ module.exports = {
             },
             colors: {
                 primary: {
-                    DEFAULT: colors.orange[500],
-                    ...colors.orange,
+                    DEFAULT: colors.purple[500],
+                    ...colors.purple,
                 },
             },
         },

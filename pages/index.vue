@@ -30,7 +30,7 @@
       </div>
 
       <div class="relative mt-5 border border-gray-100 rounded-lg">
-        <ClientOnly fallback-tag="p" fallback='Loading Books...' class="text-center text-orange-400 text-lg py-3">
+        <ClientOnly fallback-tag="p" fallback='Loading Books...' class="text-center text-purple-400 text-lg py-[10%]">
           <EasyDataTable
               :search-value="search"
               empty-message="No Book Found"

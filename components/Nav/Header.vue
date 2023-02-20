@@ -1,7 +1,7 @@
 <template>
   <header class="w-full border-b border-gray-200 bg-white/50 backdrop-blur">
     <div class="flex items-center justify-between h-20 px-3 mx-auto max-w-7xl">
-      <NuxtLink to="/" class="text-xl font-semibold">CRUD</NuxtLink>
+      <NuxtLink to="/" class="text-xl font-semibold"><img src="@/assets/images/stacked-book-clipart-14-300x300.png"></NuxtLink>
       <nav class="flex items-center space-x-2">
         <template v-for="n in menu" :key="`menuItem${n.name}`">
           <NuxtLink
@@ -25,5 +25,9 @@ const menu = ref([
 <style scoped>
 .router-link-active.link {
   @apply text-primary bg-primary-50;
+}
+
+img {
+  width: 60px;
 }
 </style>
