@@ -24,6 +24,7 @@
     "joi": "^17.7.1",
     "nuxt-icon": "^0.2.11",
     "pinia": "^2.0.30",
+    "sweetalert2": "^11.7.2",
     "vee-validate": "^4.7.4",
     "vue-toastification": "^2.0.0-rc.5",
     "vue3-easy-data-table": "^1.5.32"
