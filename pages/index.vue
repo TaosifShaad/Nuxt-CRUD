@@ -72,6 +72,7 @@
 <script setup lang="ts">
 import { Header } from "vue3-easy-data-table";
 import dayjs from "dayjs";
+import Swal from "sweetalert2";
 // Book store from pinia
 const bookStore = useBookStore();
 // Get books with async data
@@ -82,7 +83,6 @@ await useAsyncData(() => bookStore.getAll(), {
 const bookModal = ref();
 //Search for record in table
 const search = ref("");
-const a = ref("a");
 // headers for the table
 const headers: Header[] = [
   { text: "Title", value: "title", sortable: true, width: 200 },
@@ -93,7 +93,28 @@ const headers: Header[] = [
   { text: "Actions", value: "actions", width: 100 },
 ];
 // Method used to remove a book
-const removeBook = async (book) => {
-  await bookStore.remove(book._id);
+const removeBook = (book) => {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      bookStore.remove(book._id);
+      Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+      )
+    } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+    ) {}
+  });
 };
 </script>

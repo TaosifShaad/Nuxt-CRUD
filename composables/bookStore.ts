@@ -29,10 +29,15 @@ export const useBookStore = defineStore("book-store", {
                     this.error = true;
                     useToast().error(e.data.message);
                 })
-                .then(async () => {
+                .then(async (response) => {
+                    console.log(response.isDuplicate)
                     if (!this.error) {
-                        await this.getAll();
-                        useToast().success("Book created");
+                        if (!response.isDuplicate) {
+                            await this.getAll();
+                            useToast().success("Book created");
+                        } else {
+                            useToast().error('Book already exists');
+                        }
                     }
                     this.error = false;
                 });
@@ -65,7 +70,7 @@ export const useBookStore = defineStore("book-store", {
                 })
                 .then(async () => {
                     await this.getAll();
-                    useToast().success("Book removed");
+                    // useToast().success("Book removed");
                 });
         },
     },

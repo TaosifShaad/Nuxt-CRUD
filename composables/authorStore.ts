@@ -64,7 +64,7 @@ export const useAuthorStore = defineStore("author-store", {
                 })
                 .then(async () => {
                     await this.getAll();
-                    useToast().success("Author removed");
+                    // useToast().success("Author removed");
                 });
         },
     },

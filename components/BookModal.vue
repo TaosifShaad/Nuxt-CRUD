@@ -29,11 +29,11 @@
               <div class="flex items-center justify-between">
                 <!-- Conditional rendering for text -->
                 <DialogTitle class="text-xl font-medium text-gray-700"
-                >{{ book._id ? "Update" : "Create" }} Author</DialogTitle
+                >{{ book._id ? "Update" : "Create" }} Book</DialogTitle
                 >
               </div>
               <p class="mt-1 text-sm text-gray-500">
-                {{ book._id ? "Update this author" : "Create a new author here" }}
+                {{ book._id ? "Update this Book" : "Create a new Book here" }}
               </p>
 
               <form @submit="submitBook" class="mt-5">
