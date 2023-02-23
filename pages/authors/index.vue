@@ -43,6 +43,9 @@
             <template #item-name="{ name }">
               <span class="font-semibold">{{ name }}</span>
             </template>
+            <template #item-books="{ name }">
+              <span v-for="(book, index) in booksOfAuthors(name)">{{ index == booksOfAuthors(name).length -1? book : book + ', ' }} </span>
+            </template>
             <!-- Action items for table -->
             <template #item-actions="author">
               <div class="flex space-x-4 text-gray-500">
@@ -69,7 +72,25 @@ import Swal from 'sweetalert2';
 
 // Author store
 const authorStore = useAuthorStore();
+const bookStore = useBookStore();
 
+const books = await bookStore.getAll();
+// console.log(books[0].authors[0].name);
+// const authorData = books.map((el) => el.authors.filter((elem) => elem.name == 'abcd'));
+function booksOfAuthors(authorName) {
+  let arr = [];
+  books.forEach((el) => {
+    el.authors.forEach(author => {
+      if (author.name == authorName) {
+        arr.push(el.title);
+        return
+      }
+    });
+  })
+  return arr;
+}
+// const authorData = books.filter(el => el.authors[0].name == 'abcd');
+// console.log(authorData);
 // get data on page load
 useAsyncData(async () => await authorStore.getAll(), {
   initialCache: false,
@@ -96,7 +117,7 @@ const removeAuthor = (author) => {
       authorStore.remove(author._id);
       Swal.fire(
           'Deleted!',
-          'Your file has been deleted.',
+          'Your author has been deleted.',
           'success'
       )
     } else if (
@@ -109,6 +130,7 @@ const removeAuthor = (author) => {
 // Table headers
 const headers: Header[] = [
   { text: "Author Name", value: "name", sortable: true },
+  { text: "Books", value: "books"},
   { text: "Actions", value: "actions", width: 100 },
 ];
 </script>

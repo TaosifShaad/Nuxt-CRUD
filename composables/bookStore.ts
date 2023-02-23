@@ -30,7 +30,7 @@ export const useBookStore = defineStore("book-store", {
                     useToast().error(e.data.message);
                 })
                 .then(async (response) => {
-                    console.log(response.isDuplicate)
+                    // console.log(response)
                     if (!this.error) {
                         if (!response.isDuplicate) {
                             await this.getAll();

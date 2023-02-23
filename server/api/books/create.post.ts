@@ -15,12 +15,16 @@ export default defineEventHandler(async (event) => {
 
     try {
         let isDuplicate = await BookModel.find({"isbn":body.isbn}).count() > 0;
+        const result = await BookModel.find();
+        const author = result.filter(el => el.authors[0] == '63f30ac7def53edc3cdc358d');
+
         if (!isDuplicate) {
             await BookModel.create(body);
         }
         return {
             message: "Book Created",
-            isDuplicate: isDuplicate
+            isDuplicate: isDuplicate,
+            author: author
         }
     } catch(e) {
         throw createError({
