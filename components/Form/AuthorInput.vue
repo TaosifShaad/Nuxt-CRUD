@@ -4,10 +4,10 @@
       <ComboboxLabel class="label">Authors</ComboboxLabel>
       <div class="relative">
         <ComboboxInput
+            @change="query = $event.target.value"
             placeholder="Search here..."
             class="input"
             :displayValue="getDisplay"
-            @change="query = $event.target.value"
         />
         <span class="absolute top-2 right-2">
 					<ComboboxButton>
@@ -47,14 +47,16 @@
 
 
 
+
+
+
 <!--  <div class="fixed top-16 w-56 text-right">-->
 <!--    <Menu as="div" class="relative inline-block text-left">-->
 <!--      <div>-->
 <!--        <MenuButton-->
 <!--            class="input inline-flex w-full justify-center rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"-->
 <!--        >-->
-<!--          <input type="text" :value="modelValue"-->
-<!--                 @change="$emit('update:modelValue', $event.target.value)"/>-->
+<!--          <input @change="query = $event.target.value" :value="getDisplay"/>-->
 <!--          <ChevronDownIcon class="h-6 w-6 text-gray-500" />-->
 
 <!--        </MenuButton>-->
@@ -73,19 +75,21 @@
 <!--        >-->
 <!--          <div class="px-1 py-1">-->
 <!--            <MenuItem v-slot="{ active }"-->
+<!--                      as="template"-->
 <!--                      v-for="author in filteredAuthors"-->
 <!--                      :key="author._id"-->
 <!--                      :value="author._id"-->
 <!--            >-->
-<!--              <button-->
+<!--              <span-->
 <!--                  :class="[-->
 <!--                  active ? 'bg-violet-500 text-white' : 'text-gray-900',-->
 <!--                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
 <!--                ]"-->
+
 <!--              >-->
 
 <!--                {{ author.name }}-->
-<!--              </button>-->
+<!--              </span>-->
 <!--            </MenuItem>-->
 <!--          </div>-->
 <!--        </MenuItems>-->
@@ -138,4 +142,5 @@ const filteredAuthors = computed(() =>
     // return query.value
       })
 );
+
 </script>

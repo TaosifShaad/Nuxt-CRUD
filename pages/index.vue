@@ -29,7 +29,7 @@
         </button>
       </div>
 
-      <div class="relative mt-5 border border-gray-100 rounded-lg">
+      <div class="relative mt-5 mb-20 border border-gray-100 rounded-lg">
         <ClientOnly fallback-tag="p" fallback='Loading Books...' class="text-center text-purple-400 text-lg py-[10%]">
           <EasyDataTable
               :search-value="search"
@@ -47,7 +47,8 @@
               <span>{{ dayjs(published).format("MMM DD, YYYY") }}</span>
             </template>
             <template #item-authors="{ authors }">
-              <span v-for="(author, index) in authors" :key="author.id">{{ (authors.length === 1 || index === authors.length - 1) ? author.name : author.name + ', ' }}</span>
+              <span v-if="authors.length" v-for="(author, index) in authors" :key="author.id">{{ (authors.length === 1 || index === authors.length - 1) ? author.name : author.name + ', ' }}</span>
+              <span v-else class="text-red-500 font-bold"><i>No authors added for this book</i></span>
             </template>
             <!-- Action items for table -->
             <template #item-actions="book">
@@ -88,8 +89,8 @@ const headers: Header[] = [
   { text: "Title", value: "title", sortable: true, width: 200 },
   { text: "Published", value: "published", width: 150 },
   { text: "ISBN", value: "isbn", sortable: true },
-  { text: "Page Count", value: "pageCount", sortable: true, width: 200 },
-  { text: "Author", value: "authors", width: 200},
+  { text: "Page Count", value: "pageCount", sortable: true, width: 150 },
+  { text: "Author", value: "authors", width: 250},
   { text: "Actions", value: "actions", width: 100 },
 ];
 // Method used to remove a book

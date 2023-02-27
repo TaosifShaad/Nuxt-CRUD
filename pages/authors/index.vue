@@ -29,7 +29,7 @@
         </button>
       </div>
 
-      <div class="relative mt-5 border border-gray-100 rounded-lg">
+      <div class="relative mt-5 mb-20 border border-gray-100 rounded-lg">
         <ClientOnly fallback-tag="p" fallback='Loading Authors...' class="text-center text-purple-400 text-lg py-[10%]">
           <EasyDataTable
               empty-message="No Author Found"
@@ -44,7 +44,8 @@
               <span class="font-semibold">{{ name }}</span>
             </template>
             <template #item-books="{ name }">
-              <span v-for="(book, index) in booksOfAuthors(name)">{{ index == booksOfAuthors(name).length -1? book : book + ', ' }} </span>
+              <span v-if="booksOfAuthors(name).length" v-for="(book, index) in booksOfAuthors(name)">{{ index == booksOfAuthors(name).length -1? book : book + ', ' }} </span>
+              <span v-else class="text-red-500 font-bold "> <i>No books added for this author.</i></span>
             </template>
             <!-- Action items for table -->
             <template #item-actions="author">
@@ -100,7 +101,6 @@ useAsyncData(async () => await authorStore.getAll(), {
 const authorModal = ref();
 //Search for author in table
 const search = ref("");
-
 // Method used to remove an author
 const removeAuthor = (author) => {
   Swal.fire({
