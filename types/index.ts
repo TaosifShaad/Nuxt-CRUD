@@ -1,4 +1,3 @@
-import {scalarOptions} from "yaml";
 
 export interface IBook {
     _id?: string;
@@ -13,6 +12,18 @@ export interface IAuthor {
     name: string;
     _id?: string;
 }
+
+// const addId = <T>(obj: T) => {
+//     let id = Math.floor(Math.random() * 100);
+//     return {...obj, id};
+// }
+// let user = addId({
+//     name: 'abcd',
+//     age: '12'
+// });
+//
+// user.id
+
 //
 // type Person = {
 //     readonly name: string;
