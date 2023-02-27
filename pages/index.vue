@@ -38,6 +38,7 @@
               table-class-name="eztble"
               :headers="headers"
               :items="bookStore.books"
+              show-index
           >
             <!-- Show title with custom styles -->
             <template #item-title="{ title }">

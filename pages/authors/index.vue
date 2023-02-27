@@ -38,6 +38,7 @@
               table-class-name="eztble"
               :headers="headers"
               :items="authorStore.authors"
+              show-index
           >
             <!-- Show authors  -->
             <template #item-name="{ name }">
